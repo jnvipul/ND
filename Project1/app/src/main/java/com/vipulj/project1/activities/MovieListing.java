@@ -83,8 +83,9 @@ public class MovieListing extends AppCompatActivity {
                         String rating = movieO.getString("vote_average");
                         String releaseDate = movieO.getString("release_date");
                         String popularity = movieO.getString("popularity");
+                        String id = movieO.getString("id");
                         imageUrl = Endpoints.BASE_URL_MOVIEDB_IMAGES + Specifications.IMAGE_SIZE + imageUrl;
-                        moviesData.add(new Movie(imageUrl, plot, title, rating, releaseDate, popularity));
+                        moviesData.add(new Movie(id ,imageUrl, plot, title, rating, releaseDate, popularity));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -179,4 +180,5 @@ public class MovieListing extends AppCompatActivity {
             return Float.valueOf(o2.getPopularity()).compareTo(Float.valueOf(o1.getPopularity()));
         }
     }
+
 }

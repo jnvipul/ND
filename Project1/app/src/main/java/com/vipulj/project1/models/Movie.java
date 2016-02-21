@@ -15,6 +15,11 @@ public class Movie implements Parcelable {
     private String rating;
     private String releaseDate;
     private String popularity;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
 
     public String getPopularity() {
         return popularity;
@@ -41,8 +46,9 @@ public class Movie implements Parcelable {
     }
 
 
-    public Movie(final String imageUrl, final String plot, final String title, final String rating, final String
+    public Movie(final String id, final String imageUrl, final String plot, final String title, final String rating, final String
             releaseDate, String popularity) {
+        this.id = id;
         this.imageUrl = imageUrl;
         this.plot = plot;
         this.title = title;
