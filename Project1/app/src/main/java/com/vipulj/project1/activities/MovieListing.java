@@ -17,6 +17,7 @@ import android.widget.ListAdapter;
 
 import com.squareup.picasso.Picasso;
 import com.vipulj.project1.R;
+import com.vipulj.project1.SharedPrefUtility;
 import com.vipulj.project1.specs.Specifications;
 import com.vipulj.project1.models.Movie;
 import com.vipulj.project1.network.Credentials;
@@ -30,6 +31,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Set;
 
 public class MovieListing extends AppCompatActivity {
 
@@ -165,6 +168,24 @@ public class MovieListing extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void onFavourite(View v) {
+        ArrayList<Movie> copy = new ArrayList<Movie>();
+        copy.addAll(moviesData);
+        sortByFavourite(copy);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void sortByFavourite(final ArrayList<Movie> moviesData) {
+        Set<String> favourites = SharedPrefUtility.getFavoriteMoview(this);
+        for(Movie movie : this.moviesData){
+            if(favourites.contains(movie.getId())){
+                int index = moviesData.indexOf(movie);
+                moviesData.remove(index);
+                moviesData.add(0, movie);
+            }
+        }
+        this.moviesData = moviesData;
+    }
 
     public class RatingComparator implements Comparator<Movie> {
         @Override

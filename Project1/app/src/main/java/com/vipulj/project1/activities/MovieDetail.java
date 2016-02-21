@@ -1,6 +1,7 @@
 package com.vipulj.project1.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.vipulj.project1.R;
+import com.vipulj.project1.SharedPrefUtility;
 import com.vipulj.project1.models.Movie;
 import com.vipulj.project1.models.MovieTrailer;
 import com.vipulj.project1.network.Credentials;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,6 +50,8 @@ public class MovieDetail extends AppCompatActivity {
     TextView  releaseDate;
     @Bind(R.id.image)
     ImageView image;
+    @Bind(R.id.fav)
+    ImageView favImage;
 
     @Bind(R.id.rootLayout)
     LinearLayout rootLayout;
@@ -127,7 +132,7 @@ public class MovieDetail extends AppCompatActivity {
             }
 
             private void addTrailers() {
-                for(final MovieTrailer movieTrailer : mMovieTrailers){
+                for (final MovieTrailer movieTrailer : mMovieTrailers) {
                     TextView trailer = new TextView(MovieDetail.this);
                     trailer.setText(movieTrailer.getName());
                     trailer.setOnClickListener(new View.OnClickListener() {
@@ -143,11 +148,32 @@ public class MovieDetail extends AppCompatActivity {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public void openYoutube(String videoId){
+    public void openYoutube(String videoId) {
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
 //        intent.putExtra("VIDEO_ID", videoId);
 //        startActivity(intent);
-        videoId = "n_8xwn_eghc";
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + videoId)));
+    }
+
+    public void onReviews(View view) {
+        ReviewsActivity.MOVIE_ID = mMovie.getId();
+        startActivity(new Intent(this, ReviewsActivity.class));
+    }
+
+    public void onFavourite(View v) {
+        Set<String> favourites = SharedPrefUtility.getFavoriteMoview(this);
+        if (favourites.contains(mMovie.getId())) {
+//            Already in favourites
+            favImage.setBackground(getResources().getDrawable(R.drawable.unselected_star, getTheme()));
+            favourites.remove(mMovie.getId());
+            SharedPrefUtility.setFavoriteMoview(this, favourites);
+        }
+        else {
+//            Add to favourites
+            favImage.setBackground(getResources().getDrawable(R.drawable.selected_star, getTheme()));
+            favourites.add(mMovie.getId());
+            SharedPrefUtility.setFavoriteMoview(this, favourites);
+
+        }
     }
 }

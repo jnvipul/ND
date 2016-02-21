@@ -19,15 +19,24 @@
         android:layout_height="wrap_content">
         <Button
             android:layout_width="0dp"
-            android:text="Sort by Popularity"
+            android:text="By Popularity"
             android:layout_weight="1"
+            android:textSize="11dp"
             android:onClick="onPopularity"
             android:layout_height="wrap_content"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Sort by Rating"
+            android:text="By Rating"
+            android:textSize="11dp"
             android:onClick="onRating"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="By Favourite"
+            android:textSize="11dp"
+            android:onClick="onFavourite"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <GridView
