@@ -27,9 +27,6 @@ public class MovieListing extends AppCompatActivity implements ListFragment.Call
     }
 
     private void setup() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         if (findViewById(R.id.detail_fragment_container) == null) {
             // Phone
@@ -56,8 +53,16 @@ public class MovieListing extends AppCompatActivity implements ListFragment.Call
 
     @Override
     public void onGridItemClick(Movie movie) {
-        Intent intent = new Intent(this, MovieDetail.class);
-                            intent.putExtra(MovieDetail.KEY_MOVIE, movie);
-                            startActivity(intent);
+        if (!mTwoPane) {
+            Intent intent = new Intent(this, MovieDetail.class);
+            intent.putExtra(MovieDetail.KEY_MOVIE, movie);
+            startActivity(intent);
+        }else{
+            FragmentManager fm = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+            DetailFragment detailFragment =  DetailFragment.newInstance(movie);
+            ft.replace(R.id.detail_fragment_container, detailFragment);
+            ft.commit();
+        }
     }
 }

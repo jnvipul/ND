@@ -91,16 +91,16 @@ public class DetailFragment extends Fragment {
     }
 
     private void setup() {
-        mMovie = getArguments().getParcelable(MovieDetail.KEY_MOVIE);
-        if (mMovie != null) {
-            Log.v("Movie", "Received");
-            displayMovieDate();
+        if (getArguments() != null) {
+            mMovie = getArguments().getParcelable(MovieDetail.KEY_MOVIE);
+            if (mMovie != null) {
+                Log.v("Movie", "Received");
+                displayMovieDate();
+            }
+            else {
+                Log.v(TAG, "Not Working");
+            }
         }
-        else {
-            Log.v(TAG, "Not Working");
-        }
-
-
     }
 
 
