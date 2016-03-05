@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.vipulj.project1.R;
@@ -34,7 +36,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by VJ on 28/02/16.
@@ -50,6 +54,15 @@ public class ListFragment extends Fragment {
     ImageAdapter     adapter;
     private Context mContext;
 
+    @Bind(R.id.actionRating)
+    Button actionRating;
+
+    @Bind(R.id.actionPopularity)
+    Button actionPopularity;
+
+    @Bind(R.id.actionFavourite)
+    Button actionFavourite;
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +76,37 @@ public class ListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.content_listing, container);
         mGridView = (GridView) view.findViewById(R.id.grid);
-        ButterKnife.bind(getActivity(), view);
+        ButterKnife.bind(this, view);
+
+        setup();
         getMovieData();
         return view;
+    }
+
+    private void setup() {
+        actionRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+                onRating();
+            }
+        });
+
+        actionPopularity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+                onPopularity();
+            }
+        });
+
+        actionFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+                onFavourite();
+            }
+        });
     }
 
     @Override
@@ -185,17 +226,21 @@ public class ListFragment extends Fragment {
         }
     }
 
-    public void onRating(View v) {
+
+    public void onRating() {
+        Toast.makeText(getActivity(), "Inside", Toast.LENGTH_SHORT).show();
         Collections.sort(moviesData, new RatingComparator());
         adapter.notifyDataSetChanged();
     }
 
-    public void onPopularity(View v) {
+    public void onPopularity() {
+        Toast.makeText(getActivity(), "Inside", Toast.LENGTH_SHORT).show();
         Collections.sort(moviesData, new PopularityComparator());
         adapter.notifyDataSetChanged();
     }
 
-    public void onFavourite(View v) {
+    public void onFavourite() {
+        Toast.makeText(getActivity(), "Inside", Toast.LENGTH_SHORT).show();
         ArrayList<Movie> copy = new ArrayList<Movie>();
         copy.addAll(moviesData);
         sortByFavourite(copy);
