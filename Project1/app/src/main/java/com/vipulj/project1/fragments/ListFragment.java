@@ -179,6 +179,8 @@ public class ListFragment extends Fragment {
                             iCallback.onGridItemClick(moviesData.get(position));
                         }
                     });
+
+                    iCallback.setToDefault(moviesData.get(0));
                 }
 
             }
@@ -277,5 +279,7 @@ public class ListFragment extends Fragment {
     public interface Callback {
 
         void onGridItemClick(Movie movie);
+
+        void setToDefault(Movie movie);
     }
 }

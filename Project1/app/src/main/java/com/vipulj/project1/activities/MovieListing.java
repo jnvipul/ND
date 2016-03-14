@@ -48,6 +48,7 @@ public class MovieListing extends AppCompatActivity implements ListFragment.Call
         DetailFragment detailFragment = new DetailFragment();
         ft.replace(R.id.detail_fragment_container, detailFragment);
         ft.commit();
+
     }
 
 
@@ -58,11 +59,24 @@ public class MovieListing extends AppCompatActivity implements ListFragment.Call
             intent.putExtra(MovieDetail.KEY_MOVIE, movie);
             startActivity(intent);
         }else{
-            FragmentManager fm = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-            DetailFragment detailFragment =  DetailFragment.newInstance(movie);
-            ft.replace(R.id.detail_fragment_container, detailFragment);
-            ft.commit();
+            refreshDetailFragment(movie);
         }
     }
+
+    private void refreshDetailFragment(Movie movie) {
+        FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+        DetailFragment detailFragment =  DetailFragment.newInstance(movie);
+        ft.replace(R.id.detail_fragment_container, detailFragment);
+        ft.commit();
+    }
+
+    @Override
+    public void setToDefault(final Movie movie) {
+        if(mTwoPane){
+            refreshDetailFragment(movie);
+        }
+    }
+
+
 }

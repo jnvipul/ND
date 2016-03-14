@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -95,7 +94,7 @@ public class DetailFragment extends Fragment {
             mMovie = getArguments().getParcelable(MovieDetail.KEY_MOVIE);
             if (mMovie != null) {
                 Log.v("Movie", "Received");
-                displayMovieDate();
+                displayMovieData();
             }
             else {
                 Log.v(TAG, "Not Working");
@@ -104,7 +103,7 @@ public class DetailFragment extends Fragment {
     }
 
 
-    private void displayMovieDate() {
+    private void displayMovieData() {
         title.setText(mMovie.getTitle());
         rating.setText(mMovie.getRating());
         plot.setText(mMovie.getPlot());
