@@ -44,6 +44,28 @@
 
         <activity android:name=".ui.StockDetailActivity">
         </activity>
+
+        <receiver
+            android:name=".widget.StaticWidgetProvider"
+            android:label="@string/static_widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="ACTION_DATA_UPDATED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_today">
+            </meta-data>
+        </receiver>
+
+        <service
+            android:name=".service.WidgetIntentService"
+            android:exported="false">
+        </service>
+
+        <service android:name=".widget.StaticWidgetService"
+        android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
