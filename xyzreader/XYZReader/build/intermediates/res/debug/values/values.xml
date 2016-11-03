@@ -73,6 +73,10 @@
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
+    <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <color name="material_teal_500">#009688</color>
+    <color name="material_teal_700">#00796B</color>
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="photo_placeholder">#ccc</color>
@@ -211,9 +215,16 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="appbar_elevation">4dp</dimen>
+    <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="appbar_height">56dp</dimen>
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
@@ -251,7 +262,7 @@
     <dimen name="fab_content_size">24dp</dimen>
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
     <eat-comment/>
-    <dimen name="fab_elevation">2dp</dimen>
+    <dimen name="fab_elevation">8dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
@@ -1564,7 +1575,10 @@
     <!-- From: file:/Users/VJ/AndroidStudioProjects/Nanodegree/xyzreader/XYZReader/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
-
+        <item name="colorPrimary">@color/material_teal_500</item>
+        <item name="colorPrimaryDark">@color/material_teal_700</item>
+        <item name="colorAccent">@color/material_teal_500</item>
+        <item name="colorControlNormal">@color/abc_background_cache_hint_selector_material_dark</item>
     </style>
     <style name="Theme.Bacon.Detail">
         <item name="android:statusBarColor">@android:color/transparent</item>
