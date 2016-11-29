@@ -4,20 +4,13 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.sam_chordas.android.stockhawk.R;
-import com.sam_chordas.android.stockhawk.data.QuoteColumns;
-import com.sam_chordas.android.stockhawk.rest.QuoteCursorAdapter;
-import com.sam_chordas.android.stockhawk.rest.RecyclerViewItemClickListener;
 import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
-import com.sam_chordas.android.stockhawk.ui.StockDetailActivity;
-import com.sam_chordas.android.stockhawk.widget.StaticWidgetProvider;
+import com.sam_chordas.android.stockhawk.widget.QuoteWidgetProvider;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -72,14 +65,14 @@ public class WidgetIntentService extends IntentService {
         // Get app widgets
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this,
-                StaticWidgetProvider.class));
+                QuoteWidgetProvider.class));
 
 
         // Refresh Views
         for (int appWidgetId : appWidgetIds) {
 
             Context context = getApplicationContext();
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.static_widget);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_collection);
             Intent intent = new Intent(context, MyStocksActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 

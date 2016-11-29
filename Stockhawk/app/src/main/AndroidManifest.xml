@@ -37,35 +37,40 @@
         </service>
         <service android:name=".service.StockIntentService"/>
 
-        <provider
-            android:name=".data.generated.QuoteProvider"
-            android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
-            android:exported="false"/>
-
         <activity android:name=".ui.StockDetailActivity">
         </activity>
-
-        <receiver
-            android:name=".widget.StaticWidgetProvider"
-            android:label="@string/static_widget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="ACTION_DATA_UPDATED"/>
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info_today">
-            </meta-data>
-        </receiver>
 
         <service
             android:name=".service.WidgetIntentService"
             android:exported="false">
         </service>
 
-        <service android:name=".widget.StaticWidgetService"
-        android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+
+        <service
+            android:name=".widget.QuoteWidgetRemoteViewsService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+
+
+        <!--Widget-->
+        <!-- Provider -->
+        <provider
+            android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
+            android:name="com.sam_chordas.android.stockhawk.data.generated.QuoteProvider"
+            android:exported="true"/>
+
+        <!-- Receiver -->
+        <receiver
+            android:name=".widget.QuoteWidgetProvider"
+            android:label="Today at a Glance">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                       android:resource="@xml/widget_info_today"/>
+        </receiver>
     </application>
 
 </manifest>
