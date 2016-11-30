@@ -78,7 +78,7 @@ public class StockDetailActivity extends Activity {
         mLineChart.callOnClick();
         mLineChart.invalidate();
         mLineChart.requestFocus();
-        mLineChart.setNoDataText("Click to view historical data for this stock");
+        mLineChart.setNoDataText(getString(R.string.historical_data));
     }
 
     public void getStockHistory() {
